@@ -37,7 +37,7 @@ node {
                 /* Try Run Shell
          * CI/CD new image docker
          * Check docker logs */
-        sh 'docker stop nodejs-image-demo'
+#        sh 'docker stop nodejs-image-demo'
         sh 'docker rm nodejs-image-demo'
         sh 'docker run --name nodejs-image-demo -p 80:8081 -d jibon/nodejs-image-demo'
     }
