@@ -29,7 +29,6 @@
                 }
             }
         }        
-        stages {
         stage('Deploy to GKE') {
             steps{
                 step([
@@ -41,7 +40,6 @@
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
             }
-        }
-    }   
+        }  
 }
 }
