@@ -14,7 +14,7 @@ spec:
         app: shark-ui
     spec:
       containers:
-      - image: jibon/nodejs-image-demo
+      - image: gcr.io/smartfren-labs/shark-gke:v1
         name: shark-ui
         ports:
         - containerPort: 80
