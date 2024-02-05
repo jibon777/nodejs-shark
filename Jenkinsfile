@@ -4,7 +4,7 @@
         PROJECT_ID = 'smartfren-labs'
         CLUSTER_NAME = 'jibon-gke'
         LOCATION = 'us-central1-b'
-        CREDENTIALS_ID = 'jenkins-test'
+        CREDENTIALS_ID = 'jenkins-sa'
     }
     stages {
         stage("Checkout code") {
