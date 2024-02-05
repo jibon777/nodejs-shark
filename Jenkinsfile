@@ -31,6 +31,7 @@
         }        
         stage('Deploy to GKE') {
             steps{
+                sh 'kubectl delete -f manifest.yaml'
                 step([
                 $class: 'KubernetesEngineBuilder',
                 projectId: env.PROJECT_ID,
