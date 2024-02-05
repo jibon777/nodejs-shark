@@ -19,6 +19,7 @@
                 }
             }
         }
+    }
         stage("Push image") {
             steps {
                 script {
@@ -29,8 +30,7 @@
                 }
             }
         }        
-
-    }
+        
         stage('Deploy to GKE') {
             steps{
                 step([
