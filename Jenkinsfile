@@ -34,6 +34,7 @@
                 script {
                     sh 'kubectl delete -f manifest.yaml'
       }
+      }
     }
         stage('Deploy to GKE') {
             steps{
