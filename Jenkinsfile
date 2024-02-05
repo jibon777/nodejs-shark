@@ -29,7 +29,6 @@
                 }
             }
         }        
-        stages {
         stage('Deploy to GKE') {
             steps{
                 step([
@@ -42,6 +41,5 @@
                 verifyDeployments: true])
             }
         }
-    }    
-}
-}
+        }
+}    
