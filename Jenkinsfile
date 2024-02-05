@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("jibon/nodejs-image-demo")
+        app = docker.build("jibon/nodejs-shark-gke")
     }
 
     stage('Test image') {
@@ -33,12 +33,12 @@ node {
             app.push("latest")
         }
     }
-    stage ('Run New Image Docker'){
+    /* stage ('Run New Image Docker'){
                 /* Try Run Shell
          * CI/CD new image docker
          * Check docker logs */
-        sh 'docker stop nodejs-image-demo'
-        sh 'docker rm nodejs-image-demo'
-        sh 'docker run --name nodejs-image-demo -p 8081:8081 -d jibon/nodejs-image-demo'
+    /*    sh 'docker stop nodejs-image-demo'
+    /*    sh 'docker rm nodejs-image-demo'
+    /*    sh 'docker run --name nodejs-image-demo -p 8081:8081 -d jibon/nodejs-image-demo'
     }
 }
