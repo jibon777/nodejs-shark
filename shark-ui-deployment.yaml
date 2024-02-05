@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shark-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: shark-ui
+  template:
+    metadata:
+      labels:
+        app: shark-ui
+    spec:
+      containers:
+      - image: gcr.io/smartfren-labs/shark-gke:v1
+        name: shark-ui
+        ports:
+        - containerPort: 80
