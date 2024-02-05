@@ -33,6 +33,7 @@ node {
             app.push("latest")
         }
     }
+}
     /* stage ('Run New Image Docker'){
                 /* Try Run Shell
          * CI/CD new image docker
