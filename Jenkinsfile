@@ -31,7 +31,7 @@
         }        
         stage('Deploy to GKE') {
             steps{
-                sh "sed -i 's/nodejs-shark-ui:latest/nodejs-shark-ui:${env.BUILD_ID}/g' shark-ui-deployment.yaml"
+                sh "sed -i 's/nodejs-shark-ui:latest/nodejs-shark-ui:${env.BUILD_ID}/g' deployment.yaml"
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
