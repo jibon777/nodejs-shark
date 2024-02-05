@@ -29,12 +29,7 @@
                 }
             }
         }        
-        stage('Clear Pods Before Deploy') {
-            steps {
-                script {
-                    sh 'kubectl delete -f deployment.yaml'
-      }
-      }
+
     }
         stage('Deploy to GKE') {
             steps{
@@ -48,5 +43,4 @@
                 verifyDeployments: true])
             }
         }  
-}
 }
