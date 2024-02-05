@@ -3,7 +3,7 @@
     environment {
         PROJECT_ID = 'smartfren-labs'
         CLUSTER_NAME = 'jibon-gke'
-        LOCATION = 'Zone'
+        LOCATION = 'us-central1-b'
         CREDENTIALS_ID = 'jenkins'
     }
     stages {
