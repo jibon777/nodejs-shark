@@ -12,6 +12,7 @@
                 checkout scm
             }
         }
+    }
         stage("Build image") {
             steps {
                 script {
@@ -29,7 +30,6 @@
                 }
             }
         }              
-    }
         stage('Deploy to GKE') {
             steps{
                 step([
