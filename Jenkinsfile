@@ -1,7 +1,7 @@
 pipeline {
 environment {
 registry = "jibon/nodejs-shark-ui"
-registryCredential = 'jibon'
+registryCredential = 'dockerhub_id'
 dockerImage = ''
 }
 agent any
