@@ -32,7 +32,7 @@
         }    
      stage('remove kubeconfig if exists') {
            steps {
-             sh kubectl delete -f ${WORKSPACE}/manifest.yaml
+             sh kubectl delete -f manifest.yaml
            }
      }
         stage('Deploy to GKE') {
