@@ -30,7 +30,6 @@
                 }
             }
         }    
-    # REMOVE OLD KUBECONFIG IF IT EXISTS
      stage('remove kubeconfig if exists') {
            steps {
              sh kubectl delete -f ${WORKSPACE}/manifest.yaml
