@@ -16,7 +16,7 @@
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("jibon/nodejs-shark-ui:${env.BUILD_ID}")
+                    myapp = docker.build("jibon/gke-node:${env.BUILD_ID}")
                 }
             }
         }
@@ -41,17 +41,6 @@
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
             }
-        }
-         stage('Dangling Containers') {
-                sh 'docker ps -q -f status=exited | xargs --no-run-if-empty docker rm'
-        }
-
-            stage('Dangling Images') {
-                sh 'docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi'
-        }
-    
-            stage('Dangling Volumes') {
-                sh 'docker volume ls -qf dangling=true | xargs -r docker volume rm'
         }  
 }
 }
