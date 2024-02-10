@@ -1,46 +1,16 @@
- pipeline {
+pipeline {
     agent any
-    environment {
-        PROJECT_ID = 'smartfren-labs'
-        CLUSTER_NAME = 'jibon-gke'
-        LOCATION = 'us-central1-b'
-        CREDENTIALS_ID = 'jenkins-sa'
-    }
     stages {
-        stage("Checkout code") {
-            steps {
-                checkout scm
-            }
-            
-        }
-        stage("Build image") {
+        stage('Build and Push Docker Image') {
             steps {
                 script {
-                    myapp = docker.build("jibon/nodejs-shark-ui:${env.BUILD_ID}")
-                }
-            }
-        }
-        stage("Push image") {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
-                            myapp.push("latest")
-                            myapp.push("${env.BUILD_ID}")
+                    def dockerImageTag = "asia.gcr.io/smartfren-labs/shark:latest" // or your desired tag
+                    docker.build(dockerImageTag, "-f Dockerfile .")
+                    docker.withRegistry('https://asia.gcr.io', 'gcrjekins') {
+                        docker.image(dockerImageTag).push()
                     }
                 }
             }
-        }        
-        stage('Deploy to GKE') {
-            steps{
-                step([
-                $class: 'KubernetesEngineBuilder',
-                projectId: env.PROJECT_ID,
-                clusterName: env.CLUSTER_NAME,
-                location: env.LOCATION,
-                manifestPattern: 'manifest.yaml',
-                credentialsId: env.CREDENTIALS_ID,
-                verifyDeployments: true])
-            }
-        }  
-}
+        }
+    }
 }
