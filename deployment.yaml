@@ -14,7 +14,7 @@ spec:
         app: shark-ui
     spec:
       containers:
-      - image: jibon/gke-shark-ui
+      - image: jibon/nodejs-shark-ui:latest
         name: shark-ui
         ports:
         - containerPort: 80
