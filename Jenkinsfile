@@ -13,28 +13,19 @@
             }
             
         }
-        stage("Build image") {
+    stages {
+        stage('Build and Push Docker Image') {
             steps {
                 script {
-                    myapp = docker.build("jibon/gke-node:${env.BUILD_ID}")
-                }
-            }
-        }
-        stage("Push image") {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
-                            myapp.push("latest")
-                            myapp.push("${env.BUILD_ID}")
+                    def dockerImageTag = "asia.gcr.io/smartfren-labs/nodejs-shark/nodejs-shark:latest" // or your desired tag
+                    docker.build(dockerImageTag, "-f Dockerfile .")
+                    docker.withRegistry('https://asia.gcr.io', 'dockerhub_id') {
+                        docker.image(dockerImageTag).push()
                     }
                 }
             }
-        }    
-     stage('remove kubeconfig if exists') {
-           steps {
-             kubectl delete -f manifest.yaml
-           }
-     }
+        }
+    }   
         stage('Deploy to GKE') {
             steps{
                 step([
