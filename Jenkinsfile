@@ -29,7 +29,14 @@
                     }
                 }
             }
-        }        
+        }    
+    stages {
+        stage('Change Image GKE') {
+            steps {
+                sh kubectl delete -f manifest.yaml
+            }
+        }
+    }
         stage('Deploy to GKE') {
             steps{
                 step([
