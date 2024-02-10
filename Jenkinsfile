@@ -11,6 +11,7 @@
             steps {
                 checkout scm
             }
+            
         }
         stage("Build image") {
             steps {
