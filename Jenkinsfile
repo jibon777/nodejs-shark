@@ -30,11 +30,12 @@
                 }
             }
         }    
-        stage('Change Image GKE') {
-                steps {
-                    sh kubectl delete -f manifest.yaml
-                }
-            }
+    # REMOVE OLD KUBECONFIG IF IT EXISTS
+     stage('remove kubeconfig if exists') {
+           steps {
+             sh "kubectl delete -f ${WORKSPACE}/manifest.yaml"
+           }
+     }
         stage('Deploy to GKE') {
             steps{
                 step([
