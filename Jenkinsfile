@@ -13,7 +13,6 @@
             }
             
         }
-    stages {
         stage('Build and Push Docker Image') {
             steps {
                 script {
@@ -37,6 +36,5 @@
                 verifyDeployments: true])
             }
         }  
-}
 }
 }
