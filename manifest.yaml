@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: shark-ui
 spec:
-  replicas: 1
+  replicas: 3
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -18,3 +18,8 @@ spec:
         name: shark-ui
         ports:
         - containerPort: 80
+        resources:
+          # You must specify requests for CPU to autoscale
+          # based on CPU utilization
+          requests:
+            cpu: "250m"

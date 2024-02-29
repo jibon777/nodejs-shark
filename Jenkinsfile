@@ -6,13 +6,15 @@
         LOCATION = 'us-central1-b'
         CREDENTIALS_ID = 'jenkins-sa'
     }
-    stages {
-        stage("Checkout code") {
-            steps {
-                checkout scm
-            }
-            
-        }
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def scannerHome = tool 'SonarScanner';
+    withSonarQubeEnv() {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
         stage('Build and Push Docker Image') {
             steps {
                 script {
