@@ -1,4 +1,4 @@
- node {
+ pipeline {
     agent any
     environment {
         PROJECT_ID = 'smartfren-labs'
@@ -6,10 +6,10 @@
         LOCATION = 'us-central1-b'
         CREDENTIALS_ID = 'jenkins-sa'
     }
-        stage('SonarQube Analysis') {
-            def scannerHome = tool 'SonarScanner';
-            withSonarQubeEnv() {
-            sh "${scannerHome}/bin/sonar-scanner"
+    stages {
+        stage("Checkout code") {
+            steps {
+                checkout scm
             }
             
         }
@@ -36,4 +36,5 @@
                 verifyDeployments: true])
             }
         }  
+}
 }
