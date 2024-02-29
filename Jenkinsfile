@@ -6,11 +6,6 @@
         LOCATION = 'us-central1-b'
         CREDENTIALS_ID = 'jenkins-sa'
     }
-    stages {
-        stage("Checkout code") {
-            steps {
-                checkout scm
-            }
         stage('SonarQube Analysis') {
             def scannerHome = tool 'SonarScanner';
             withSonarQubeEnv() {
