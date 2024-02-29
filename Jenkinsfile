@@ -1,4 +1,4 @@
- pipeline {
+ node {
     agent any
     environment {
         PROJECT_ID = 'smartfren-labs'
