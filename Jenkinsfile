@@ -4,7 +4,7 @@
         PROJECT_ID = 'test-oracle-msig'
         CLUSTER_NAME = 'cluster-test-performance'
         LOCATION = 'asia-southeast2'
-        CREDENTIALS_ID = 'jenkins-key'
+        CREDENTIALS_ID = 'jnks-msig'
     }
     stages {
         stage("Checkout code") {
