@@ -25,7 +25,7 @@
             }
         }
         stage('Deploy to GKE') {
-            steps{ ([credentialsId: env.CREDENTIALS_ID]) 
+            steps{ withCredentials([file(credentialsId: env.CREDENTIALS_ID)])
             sh '''
             kubectl apply -f deployment.yaml
             kubectl apply -f shark-ui-svc.yaml
