@@ -18,7 +18,7 @@
                 script {
                     def dockerImageTag = "gcr.io/test-oracle-msig/nodejs-shark:latest" // or your desired tag
                     docker.build(dockerImageTag, "-f Dockerfile .")
-                    docker.withRegistry('https://gcr.io', 'gcr:jenkins-msig') {
+                    docker.withRegistry('https://gcr.io', 'gcr:jnks-msig') {
                         docker.image(dockerImageTag).push()
                     }
                 }
