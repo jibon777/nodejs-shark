@@ -1,10 +1,10 @@
  pipeline {
     agent any
     environment {
-        PROJECT_ID = 'smartfren-labs'
-        CLUSTER_NAME = 'jibon-gke'
-        LOCATION = 'us-central1-b'
-        CREDENTIALS_ID = 'jenkins-sa'
+        PROJECT_ID = 'test-oracle-msig'
+        CLUSTER_NAME = 'cluster-test-performance'
+        LOCATION = 'asia-southeast2'
+        CREDENTIALS_ID = 'jenkins-key'
     }
     stages {
         stage("Checkout code") {
@@ -16,7 +16,7 @@
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def dockerImageTag = "gcr.io/smartfren-labs/nodejs-shark:latest" // or your desired tag
+                    def dockerImageTag = "gcr.io/cluster-test-performance/nodejs-shark:latest" // or your desired tag
                     docker.build(dockerImageTag, "-f Dockerfile .")
                     docker.withRegistry('https://gcr.io', 'gcr:gcrjekins') {
                         docker.image(dockerImageTag).push()
