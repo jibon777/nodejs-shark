@@ -6,7 +6,7 @@
         LOCATION = 'asia-southeast2'
         CREDENTIALS_ID = 'jnks-msig'
     }
-
+    stages {
         stage("Checkout code") {
             steps {
                 checkout scm
@@ -24,14 +24,12 @@
                 }
             }
         }
-        stage('Deployment') {
-        steps {
-        script {
-          sh '''
+        stage('Deploy to GKE') {
+            steps{ sh '''
             kubectl apply -f deployment.yaml
             kubectl apply -f shark-ui-svc.yaml
           '''
-        }
-      }
-    }
-  }
+            }
+        }  
+}
+}
