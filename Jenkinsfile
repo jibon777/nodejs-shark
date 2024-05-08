@@ -6,14 +6,13 @@
         LOCATION = 'asia-southeast2'
         CREDENTIALS_ID = 'jnks-msig'
     }
-    stages {
+
         stage("Checkout code") {
             steps {
                 checkout scm
             }
             
         }
-    }
         stage('Build and Push Docker Image') {
             steps {
                 script {
