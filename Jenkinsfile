@@ -24,7 +24,6 @@
                 }
             }
         }
-        stages {
         stage('Deployment') {
         steps {
         container('cloud-sdk') {
@@ -38,5 +37,4 @@
       }
     }
   }
-}
 }
