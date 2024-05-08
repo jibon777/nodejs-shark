@@ -26,14 +26,12 @@
         }
         stage('Deployment') {
         steps {
-        container('cloud-sdk') {
         {
           sh '''
             kubectl apply -f deployment.yaml
             kubectl apply -f shark-ui-svc.yaml
           '''
         }
-      }
       }
     }
   }
