@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: shark-ui
 spec:
-  replicas: 3
+  replicas: 6
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -14,7 +14,7 @@ spec:
         app: shark-ui
     spec:
       containers:
-      - image: gcr.io/smartfren-labs/nodejs-shark:latest
+      - image: gcr.io/test-oracle-msig/nodejs-shark:latest
         name: shark-ui
         ports:
         - containerPort: 80
