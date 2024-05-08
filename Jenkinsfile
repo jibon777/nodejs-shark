@@ -25,11 +25,15 @@
             }
         }
         stage('Deploy to GKE') {
-            steps{ withCredentials([file(credentialsId: env.CREDENTIALS_ID)])
-            sh '''
-            kubectl apply -f deployment.yaml
-            kubectl apply -f shark-ui-svc.yaml
-          '''
+            steps{
+                step([
+                $class: 'KubernetesEngineBuilder',
+                projectId: env.PROJECT_ID,
+                clusterName: env.CLUSTER_NAME,
+                location: env.LOCATION,
+                manifestPattern: 'manifest.yaml',
+                credentialsId: env.CREDENTIALS_ID,
+                verifyDeployments: true])
             }
         }  
 }
