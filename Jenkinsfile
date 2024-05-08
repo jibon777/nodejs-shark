@@ -16,7 +16,7 @@
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def dockerImageTag = "gcr.io/cluster-test-performance/nodejs-shark:latest" // or your desired tag
+                    def dockerImageTag = "gcr.io/test-oracle-msig/nodejs-shark:latest" // or your desired tag
                     docker.build(dockerImageTag, "-f Dockerfile .")
                     docker.withRegistry('https://gcr.io', 'gcr:gcrjekins') {
                         docker.image(dockerImageTag).push()
