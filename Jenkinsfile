@@ -26,7 +26,7 @@
         }
         stage('Deployment') {
         steps {
-        {
+        script {
           sh '''
             kubectl apply -f deployment.yaml
             kubectl apply -f shark-ui-svc.yaml
