@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: shark-ui
 spec:
-  replicas: 1
+  replicas: 6
   revisionHistoryLimit: 3
   selector:
     matchLabels:
