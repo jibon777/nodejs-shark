@@ -18,23 +18,12 @@
                 script {
                     def dockerImageTag = "gcr.io/test-oracle-msig/shark:latest" // or your desired tag
                     docker.build(dockerImageTag, "-f Dockerfile .")
-                    docker.withRegistry('https://gcr.io', 'gcr:gcrjekins') {
+                    docker.withRegistry('https://gcr.io', 'gcr:jnks-msig') {
                         docker.image(dockerImageTag).push()
                     }
                 }
             }
         }
-        stage('Deploy to GKE') {
-            steps{
-                step([
-                $class: 'KubernetesEngineBuilder',
-                projectId: env.PROJECT_ID,
-                clusterName: env.CLUSTER_NAME,
-                location: env.LOCATION,
-                manifestPattern: 'manifest.yaml',
-                credentialsId: env.CREDENTIALS_ID,
-                verifyDeployments: true])
-            }
-        }  
+
 }
 }
