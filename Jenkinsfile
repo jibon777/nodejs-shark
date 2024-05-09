@@ -2,7 +2,7 @@
     agent any
     environment {
         PROJECT_ID = 'test-oracle-msig'
-        CLUSTER_NAME = 'cluster-test-performance'
+        CLUSTER_NAME = 'cluster-test-performance-1'
         LOCATION = 'asia-southeast2'
         CREDENTIALS_ID = 'jnks-msig'
     }
