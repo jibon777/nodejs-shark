@@ -1,0 +1,24 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app', '.'
+    ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app'
+    ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'my-app',
+        '--image', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app',
+        '--region', 'asia-southeast2',
+        '--platform', 'managed',
+        '--allow-unauthenticated'
+      ]
+
+images:
+  - asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app
