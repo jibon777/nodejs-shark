@@ -11,14 +11,16 @@ steps:
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args:
-      [
-        'run', 'deploy', 'my-app',
-        '--image', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app',
-        '--region', 'asia-southeast2',
-        '--platform', 'managed',
-        '--allow-unauthenticated'
-      ]
+    args: [
+      'run', 'deploy', 'my-app',
+      '--image', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app',
+      '--region', 'asia-southeast2',
+      '--platform', 'managed',
+      '--allow-unauthenticated'
+    ]
 
 images:
   - asia-southeast2-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app
+
+options:
+  logging: CLOUD_LOGGING_ONLY
