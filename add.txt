@@ -3,3 +3,4 @@ ini test jenkins baru
 coba
 lagi
 test cloudbuild
+coba push
